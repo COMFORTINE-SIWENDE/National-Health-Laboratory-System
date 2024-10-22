@@ -1,0 +1,151 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/pagestyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    {% include 'partials/m-nav.html'%}
+    <div class="Container">
+        <!-- Left Container -->
+        <div class="leftCont">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="bggr">
+                    <span class="span1">Sign In</span>
+                </div>
+               
+                <div class="accountType">
+                    <span>Account type</span>
+                    <div class="acType">
+                        {{ form.account_type }}
+                    </div>
+                </div>
+    
+                <div class="input">
+                    <div>
+                        <div class="icon">
+                            <i class="fa-solid fa-user"></i>
+                            {{ form.username }}
+                        </div>
+                    </div>
+            
+                    <div>
+                        <div class="icon">
+                            <i class="fa-solid fa-lock"></i>
+                            {{ form.password }}
+                        </div>                    
+                    </div>
+                    
+                </div>
+                <span class="forgot"><a href="#">Forgot password?</a></span>
+                <div class="btn">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    
+        <!-- Right Container -->
+        <div class="rightCont">
+            <span class="ministry">MINISTRY OF HEALTH</span>
+            <div class="logo">
+                <img src="{% static 'img/logo2.png' %}" alt="Logo">
+            </div>
+            <div class="innerCont">
+                <span>National Public Health Laboratory</span>
+                <p>Enter your personal details and start journey with us.</p>
+                <a href="/sign_up">Create Account</a>
+            </div>
+        </div>
+       </div>
+</body>
+</html>
+
+<!--
+{% load static%}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/pagestyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   <div class="Container">
+    {% comment %} Left Container {% endcomment %}
+    <div class="leftCont">
+        <form action="" method = "POST">
+            {% csrf_token %}
+            {% comment %} {{form|crispy}} {% endcomment %}
+            <div class="bggr">
+                <span class="span1">Sign In</span>
+            </div>
+           
+          <div class="accountType">
+            <span>Account type</span>
+
+            <div class="acType">
+                {{form.account_type}}
+            {% comment %} <label for="admin">Admin</label>
+            <input name="accountType"  type="radio" id="admin">
+
+            <label for="user">Lab Manager</label>
+            <input name="accountType" type="radio" id="user"> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="input">
+                <div>
+                
+                {% comment %} <label for="username">Username</label> {% endcomment %}
+                <div class="icon">
+                    <i class="fa-solid fa-user"></i>
+                    {% comment %} <input type="text" id="username"> {% endcomment %}
+                    {{form.username}}
+                </div>
+                </div>
+        
+                <div>
+                    
+                    {% comment %} <label for="password">Password</label> {% endcomment %}
+                    <div class="icon">
+                        <i class="fa-solid fa-lock"></i>
+                        {% comment %} <input type="password" id="password"> {% endcomment %}
+                        {{form.password}}
+                    </div>                    
+                </div>
+                
+            </div>
+            <span class="forgot"><a href="#">Forgot password?</a></span>
+         <div class="btn">
+            <button>Login</button>
+         </div>
+
+        </form>
+    </div>
+
+    {% comment %} Right Container {% endcomment %}
+    <div class="rightCont">
+        <span class="ministry">MINISTRY OF HEALTH</span>
+        <div class="logo">
+            <img src="../static/img/logo2.png" alt="Logo">
+        </div>
+        <div class="innerCont">
+            <span>National Public Health Laboratory</span>
+            <p>Enter your personal details and start journey with us.</p>
+           <a href="/sign_up">Create Account</a>
+        </div>
+    </div>
+
+   </div>
+</body>
+</html>
+-->

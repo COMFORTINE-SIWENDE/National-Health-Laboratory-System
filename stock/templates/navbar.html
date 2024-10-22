@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-md navbar-white fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Stock Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              {% comment %} <a class="nav-link" href="/list_items">List items</a> {% endcomment %}
+            </li>
+            <li class="nav-item">
+              {% comment %} <a class="nav-link" href="/add_items">Add items</a> {% endcomment %}
+            </li>
+            {% comment %} <li><a class = "nav-link" href="/list_history">List History</a></li> {% endcomment %}
+            {% endif %}
+      </ul>
+      <ul class="navbar">
+        <ul class="navbar">
+            {% if request.user.is_authenticated %}
+            <li><a href = "/accounts/logout"><button class ="btn
+              btn-danger">{{user}} | Logout</button></a></li>
+            {% else %}
+            <li><a href="/accounts/login">Login</a></li>
+            {% endif %}
+        </ul>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="version-display" data-toggle="modal" data-target="#myModal">SMIS Ver: 1.0</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">System Information</h4>
+            </div>
+            <div class="model-body">
+                <div class="dev-info">
+                    <p class="x"><b>STOCK MANAGEMENT INFORMATION SYSTEMS</b></p>
+                    <p>VERSION: 1.0</p>
+                </div>
+                <div class="model-header">SOFTWARE DEVELOPER🏠:
+                    <p>Xeniex Tech.☆*: .｡. o(≧▽≦)o .｡.:*☆🔕</p>
+                    <p>77777</p>
+                    <a href="https://www.google.com" target="blank" color:blue>visit</a>
+                    <img src="/static/img/kdei2.jpg" alt="Developer Logo" class="circular-logo"/>
+                </div>
+            </div>
+            <div class="model-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+
+        <!-- Space between tables -->
+        <br><br>
+
+        <!-- Second Table -->
+        <div>
+            {% comment %} ****** {% endcomment %}
+            <h1 class="text-danger">Selected Items</h1>
+            <form method="post" action="{% url 'download_csv' %}">
+                {% csrf_token %}
+                {% comment %} {{ form|crispy }} {% endcomment %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Category</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Units</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in products%}
+                        <tr>
+                            <td>{{ item.id }}<input type="hidden" name="item_ids" value="{{ item.id }}"></td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.item_name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.unit_of_issue }}</td>
+                            <td>{{ item.timestamp}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="text-dark">Download CSV</button>
+                <button type="button" class="text-dark" onclick="window.history.back()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--End table-->

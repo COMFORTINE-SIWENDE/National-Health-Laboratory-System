@@ -1,0 +1,41 @@
+{% extends 'partials/base-adm.html' %}
+
+{% block title%}Make Orders{% endblock%}
+
+{% block content %}
+<!--Start table-->
+<div class="container">
+    <div class="row my-4">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+        <table class="table bg-info">
+          <thead class="thead-dark">
+            <tr>
+              {% comment %} <th scope="col">Manager</th> {% endcomment %}
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Date</th>
+              <th scope="col">Order By</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            {% if order.staff == user %}
+            <tr>
+              {% comment %} <td>{{orders.product.}}</td> {% endcomment %}
+              <td>{{order.product}}</td>
+              <td>{{order.product.category}}</td>
+              <td>{{order.product.quantity}}</td>
+              <td>{{order.date}}</td>
+              <td>{{order.staff.username}}</td>
+            </tr>
+            {% endif %} 
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--End table-->
+{% endblock %}

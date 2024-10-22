@@ -1,0 +1,80 @@
+{% extends 'partials/base-adm.html' %}
+
+{% block title%}Add items{% endblock%}
+
+{% block content %}
+{% load crispy_forms_tags %}
+ <!--Start table-->
+ <div class="container">
+  <div class="row my-4">
+    <div class="col-md-4">
+        {% comment %} Adding items {% endcomment %}
+        <div class="boarder display_table p-3">
+          <div class = "header">{{title}}</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="btn btn-primary mybutton" type="submit" value ='Save'>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+      <h2 class="text-danger">List of Products</h2>
+        {% comment %} <div class = "header">{{title}}</div> {% endcomment %}
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>CATEGORY</th>
+            <th>ITEM NAME</th>
+            <th>QUANTITY</th>
+            <th>UNITS</th>
+            <th>TIMESTAMP</th>
+            <th>EDIT ITEM</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody> 
+          {% for item in items%}
+            <tr>
+                <th>{{item.category}}</th>
+                <th>{{item.item_name}}</th>
+                <th>{{item.quantity}}</th>
+                <th>{{item.unit_of_issue}}</th>
+                <th>{{item.timestamp}}</th>
+                <th><a class="btn btn-info btn-sm" href="{% url 'edit-item' item.id %}">Edit</a></th>
+                <th><a class="btn btn-danger btn-sm" href="{% url 'delete-item' item.id %}">Delete</a></th>
+            </tr>
+          </tbody> 
+          {% endfor %}
+        
+        {% for instance in queryset %}
+        <tr>
+          
+            <td>{{forloop.counter}}</td>
+            {% comment %} <td>{{instance.category}}</td> {% endcomment %}
+            <td> <a href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
+            <td>
+              {% if instance.quantity <= instance.reorder_level %}
+              <div style="background-color:orange">
+                <a href="{% url 'stock_detail' instance.id %}">{{instance.quantity}}</a>
+              </div>
+              {% else %}
+              <a href="{% url 'stock_detail' instance.id %}">{{instance.quantity}}</a>
+              {% endif %}
+            </td>
+            <td><a href="{% url 'reorder_level' instance.id %}">{{instance.reorder_level}}</a></td>
+            {% comment %} <td>{{instance.timestamp}}</td> {% endcomment %}
+            <td>{{instance.last_updated}}</td>
+            <td><a href="{% url 'delete_items' instance.id%}">Delete</a></td>
+            {% comment %} <img src="{% static 'img/delete.png'%}" alt=""> {% endcomment %}
+            
+        </tr>
+        {% endfor %}
+    
+      </table> 
+    </div>
+  </div>
+</div>
+<!--End table-->
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'partials/base-adm.html' %}
+
+{% block title%}Admin Panel {% endblock%}
+
+{% block content %}
+{% comment %} {% if user.is_authenticated and user.is_stuff and user.is_superuser %} {% endcomment %}
+<!--Start visuals-->
+<div class="container">
+  <div class="row my-5">
+      <div class="col-md-6">
+          <div class="bg-white">
+          <div>
+              <canvas id="myChart"></canvas>
+            </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            
+            <script>
+              const ctx = document.getElementById('myChart');
+            
+              new Chart(ctx, {
+                type: 'pie',
+                data: {
+                  labels: [{% for order in orders%}'{{order.product.name}}',{% endfor %}],
+                  datasets: [{
+                    label: 'Orders',
+                    data: [{% for order in orders %} {{order.order_quantity}}, {% endfor %}]],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            </script>
+          </div>
+            
+      </div>
+      <div class="col-md-6 ">
+          <div class="bg-info">
+
+          <div>
+              <canvas id="myChart2"></canvas>
+            </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            
+            <script>
+              const ctx2 = document.getElementById('myChart2');
+            
+              new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                  labels: ['Blue', 'Yellow', 'Green', 'Purple'],
+                  datasets: [{
+                    label: 'Users',
+                    data: [12, 19, 5, 3],
+                    borderWidth: 2
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            </script>
+          </div>
+            
+      </div>
+  </div>
+</div>
+
+<!--End visuals-->
+{% comment %} {% else %}
+{% include 'manager/manager.html' %}
+{% endif %} {% endcomment %}
+{% endblock %}

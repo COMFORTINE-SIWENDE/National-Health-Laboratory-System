@@ -1,0 +1,53 @@
+  <!--Top side-->
+  <div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-dark text-warning">
+                    Information
+                </div>
+                <div class="card-body">
+                    <marquee behavior="" direction="">
+                       <h3 class = "my-4" style =" background: linear-gradient(to right, #fff,#ff0000, #00ff75);color: transparent;background-clip:text;"> NPHLS Admin Info.🏠📄</h3>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-warning">
+                    Data Analysis Dashboard
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'adm_users' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Lab Managers <i class="fa-solid fa-users"></i></h4>
+                                <h3>10</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'adm_add_items' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Items <i class="fa-solid fa-users"></i></h4>
+                                <h3>15</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'orders' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Orders <i class="fa-solid fa-users"></i></h4>
+                                <h3>8</h3>
+                            </div>
+                        </a>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End top side-->

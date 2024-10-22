@@ -1,0 +1,61 @@
+{% extends 'partials/m-base.html' %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+{% include 'partials/m-topnav.html' %}
+{% load crispy_forms_tags %}
+<!--Start table-->
+<div class="container">
+    <div class="row my-4">
+      <div class="col-md-4">
+        
+        <div class="boarder display_table p-3">
+            <div class = "header">{{title}}</div>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  {{form|crispy}}
+                  <input class="btn btn-primary mybutton" type="submit" value ='Save'>
+              </form>
+
+          </div>
+
+      </div>
+      <div class="col-md-8">
+       
+        <h1 class="text-danger">Items Running Out of Stock</h1>
+        {# concider the action****#}
+        <form method="post" action="{% url 'download_csv' %}">
+            {% csrf_token %}
+            {% comment %} {{ form|crispy }} {% endcomment %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Item Name</th>
+                        <th>Item Category</th>
+                        <th>Quantity</th>
+                        <th>Date</th>
+                        <th>Units</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}<input type="hidden" name="item_ids" value="{{ item.id }}"></td>
+                            <td>{{ order.product }}</td>
+                            <td>{{ order.product.category }}</td>
+                            <td>{{ order.product.quantity }}</td>
+                            <td>{{ order.date }}</td>
+                            <td>{{ order.product.unit_of_issue }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input type="submit" value ="Submit" class=" btn btn-secondary text-dark"/>
+            <a type="button" class="btn btn-primary text-dark" href="{% url 'update_admin' %}">Cancel</a>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
+  <!--End table-->
+{% endblock %}

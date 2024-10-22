@@ -1,0 +1,51 @@
+ <!--Top side-->
+ <div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-dark text-warning">
+                    Manager's Info
+                </div>
+                <div class="card-body">
+                    <marquee behavior="" direction="">
+                       <h3 class = "my-4" style =" background: linear-gradient(to right, #000,#ff0000, #00ff75);color: transparent;background-clip:text;"> NPHLS lab Manager.👮‍♂️📄</h3>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-warning">
+                    Manager Operations
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'manager_view' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Service Orders <i class="fa-solid fa-users"></i></h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'update_admin' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Update Admin <i class="fa-solid fa-users"></i></h4>
+                               
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class ="text-decoration-none" href="{% url 'report' %}">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Reports <i class="fa-solid fa-users"></i></h4>
+                            </div>
+                        </a>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End top side-->

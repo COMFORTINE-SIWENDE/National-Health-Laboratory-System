@@ -1,0 +1,56 @@
+{% extends 'partials/base-adm.html' %}
+
+{% block title %}Users{% endblock%}
+
+{% block content %}
+<!--Start table-->
+<div class="container">
+    <div class="row my-4">
+      <div class="col-md-8">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header bg-info text-white">
+                      Profile Page.🤞 
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-md-8">
+                              <span class="h4">Staff profile Info</span>
+                              <hr>
+                              <table class="table bg-white table-boarderless">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">Name</th>
+                                      <td>{{staff.username}}</td>
+                                    
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Email</th>
+                                      <td>{{staff.email}}</td>
+                                     
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Phone Contact</th>
+                                      <td>{{staff.profile.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Address</th>
+                                      <td>{{staff.profile.address}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                          </div>
+                          <div class="col-md-4">
+                              <img class="img-thumbnail" src="{{staff.profile.image.url}}" alt="">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+         
+      </div>
+  
+    </div>
+  </div>
+  <!--End table-->
+{% endblock %}

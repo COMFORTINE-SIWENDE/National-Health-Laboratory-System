@@ -1,0 +1,96 @@
+{% extends 'partials/m-base.html' %}
+{% block title %}Manager View{% endblock %}
+{% block content %}
+{% comment %} {% if user.is_authenticated and user.is_stuff %} {% endcomment %}
+{% include 'partials/m-topnav.html' %}
+{% load crispy_forms_tags %}
+  <!--Start table-->
+<!-- Custom CSS for alignment -->
+<style>
+    .left-column {
+        padding-top:15px;
+        float: left;
+        width: 30%;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #1a1a1a ;
+    }
+    .right-column {
+        float: right;
+        width: 65%;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #1a1a1a ;
+    }
+    .clear-fix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+
+<!--Start table-->
+<div class="container clear-fix">
+    <!-- Left Column: Form -->
+    <div class="left-column">
+        <div class="border bg-white p-4">
+            <h3>Search Products</h3>
+            <form action="" method="GET">
+                <!-- Render the form using crispy forms -->
+                {{ form|crispy }}
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Right Column: Tables -->
+    <div class="right-column">
+        <!-- First Table -->
+        <div>
+            <h1 class="text-danger">Items in Category</h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Units</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.item_name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.timestamp }}</td>
+                            <td>{{ item.unit_of_issue }}</td>
+                            <td><input type="checkbox" name="selected_items" value="{{ item.id }}"></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-secondary text-dark">Select Items</button><span><p style="
+                    font-size: 18px; 
+                    font-weight: bold; 
+                    color: #4CAF; 
+                    {% comment %} border: 1px solid #4CAF50;  {% endcomment %}
+                    padding: 7px; 
+                    background-color: #f9f9f9; 
+                    border-radius: 5px; 
+                    display: inline-block;"
+                    
+                    ><i>{{item_count}}.--.@Products Available</i></p></span>
+        </div>
+        <hr style="color:blue font:bold">
+        
+    
+  <!--End table-->
+{% comment %} {% endif %} {% endcomment %}
+{% endblock %}

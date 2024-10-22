@@ -1,0 +1,23 @@
+{% extends 'partials/base-adm.html' %}
+
+{% block title%}Update Page{% endblock%}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="border bg-white p-3">
+                <h3>Edit Item</h3>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <a class="btn btn-secondary" href="{% url 'adm_add_items' %}">Cancel</a>
+                    <input class="btn btn-info" type="submit" value="update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
